@@ -1,0 +1,8 @@
+{
+  "avatars": [
+    { "name": "pineapple", "image_url": "https://cdn-icons-png.flaticon.com/512/3137/3137001.png" },
+    { "name": "orange", "image_url": "https://cdn-icons-png.flaticon.com/512/3136/3136979.png" },
+    { "name": "strawberry", "image_url": "https://cdn-icons-png.flaticon.com/512/3137/3137039.png" },
+    { "name": "potato", "image_url": "https://cdn-icons-png.flaticon.com/512/3136/3136997.png" }
+  ]
+}

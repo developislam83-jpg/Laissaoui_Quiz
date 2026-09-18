@@ -1,0 +1,43 @@
+{
+  "Common": {
+    "title": "QuizLive",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite"
+  },
+  "Landing": {
+    "login": "Connexion",
+    "signup": "S'inscrire",
+    "description": "Entrez dans un monde de mystère et de défi. Ici, les esprits sont testés et les secrets révélés. Êtes-vous prêt à affronter l'inconnu et à prouver votre valeur dans des quiz impitoyables ? La vérité est cachée dans les options...",
+    "letsGo": "Allons-y",
+    "reviewsTitle": "Que disent les survivants ?",
+    "review1Name": "Anonyme_01",
+    "review1Text": "Atmosphère terrifiante et compétition féroce... Je ne m'attendais pas à ce que les quiz soient aussi palpitants.",
+    "review2Name": "Le_Cerveau",
+    "review2Text": "Le design donne l'impression d'être dans une salle d'interrogatoire. Une expérience inoubliable !",
+    "review3Name": "Candidat_X",
+    "review3Text": "Chaque question est un piège, chaque réponse une bouée de sauvetage. Ce n'est pas qu'un jeu.",
+    "footerAbout": "À propos",
+    "footerTerms": "Conditions",
+    "footerPrivacy": "Confidentialité",
+    "footerRights": "© 2026 Tous droits réservés. Faites attention à vos choix."
+  },
+  "Dashboard": {
+    "login": "Connexion",
+    "welcomePrefix": "Bienvenue dans",
+    "welcomeHighlight": "La Salle Principale",
+    "welcomeSub": "Choisissez soigneusement votre prochaine destination. Toutes les portes ne sont pas ouvertes... pour l'instant.",
+    "joinTitle": "Rejoindre un Quiz",
+    "joinDesc": "Entrez le code du quiz et rejoignez la salle d'interrogatoire... je veux dire, la salle de jeu.",
+    "joinAction": "Rejoindre",
+    "createTitle": "Créer un Quiz",
+    "createDesc": "Concevez vos pièges et vos questions pour tester vos amis.",
+    "createAction": "Créer",
+    "lockedAction": "Verrouillé (Connectez-vous)",
+    "friendsTitle": "Groupe d'amis",
+    "friendsDesc": "Rassemblez vos alliés... ou vos ennemis potentiels au même endroit.",
+    "friendsAction": "Créer un groupe",
+    "settingsTitle": "Paramètres",
+    "settingsDesc": "Contrôlez vos préférences et votre identité secrète.",
+    "settingsAction": "Aller aux paramètres"
+  }
+}

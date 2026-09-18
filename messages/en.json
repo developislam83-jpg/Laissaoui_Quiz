@@ -1,0 +1,43 @@
+{
+  "Common": {
+    "title": "QuizLive",
+    "loading": "Loading...",
+    "error": "An error occurred"
+  },
+  "Landing": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "description": "Enter a world of mystery and challenge. Here, minds are tested and secrets are revealed. Are you ready to face the unknown and prove your worth in ruthless quizzes? The truth is hidden in the options...",
+    "letsGo": "Let's Go",
+    "reviewsTitle": "What do the survivors say?",
+    "review1Name": "Anonymous_01",
+    "review1Text": "Terrifying atmosphere and fierce competition... I didn't expect quizzes to be this thrilling.",
+    "review2Name": "Mastermind",
+    "review2Text": "The design makes you feel like you're in an interrogation room. Unforgettable experience!",
+    "review3Name": "Contestant_X",
+    "review3Text": "Every question is a trap, every answer a lifeline. This is not just a game.",
+    "footerAbout": "About",
+    "footerTerms": "Terms & Conditions",
+    "footerPrivacy": "Privacy Policy",
+    "footerRights": "© 2026 All rights reserved. Be careful what you choose."
+  },
+  "Dashboard": {
+    "login": "Login",
+    "welcomePrefix": "Welcome to",
+    "welcomeHighlight": "The Main Room",
+    "welcomeSub": "Choose your next destination carefully. Not all doors are open... yet.",
+    "joinTitle": "Join a Quiz",
+    "joinDesc": "Enter the quiz code and join the interrogation room... I mean, the playroom.",
+    "joinAction": "Join Now",
+    "createTitle": "Create a Quiz",
+    "createDesc": "Design your traps and questions to test your friends.",
+    "createAction": "Create",
+    "lockedAction": "Locked (Login to unlock)",
+    "friendsTitle": "Friends Group",
+    "friendsDesc": "Gather your allies... or potential enemies in one place.",
+    "friendsAction": "Create Group",
+    "settingsTitle": "Settings",
+    "settingsDesc": "Control your preferences and secret identity.",
+    "settingsAction": "Go to Settings"
+  }
+}
