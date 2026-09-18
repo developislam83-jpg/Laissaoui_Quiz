@@ -82,11 +82,11 @@ const HistoryCard = ({ record, onDelete }: { record: any, onDelete: (id: string)
       </div>
 
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowModal(false)}>
-          <div className="bg-[var(--surface)] border border-[var(--primary)] rounded-2xl p-6 max-w-3xl w-full max-h-[85vh] overflow-y-auto shadow-[var(--shadow-glow)]" onClick={e => e.stopPropagation()}>
-            <div className="flex justify-between items-center mb-6 border-b border-[var(--border)] pb-4">
-              <h2 className="text-2xl font-bold text-[var(--primary)]">{record.title}</h2>
-              <button onClick={() => setShowModal(false)} className="p-2 hover:bg-[var(--background)] rounded-full transition-colors"><X size={24} /></button>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4 bg-black/60 backdrop-blur-sm" onClick={() => setShowModal(false)}>
+          <div className="bg-[var(--surface)] border border-[var(--primary)] rounded-2xl p-4 sm:p-6 max-w-3xl w-full sm:w-[95%] max-h-[90vh] overflow-y-auto shadow-[var(--shadow-glow)]" onClick={e => e.stopPropagation()}>
+            <div className="flex justify-between items-center mb-4 sm:mb-6 border-b border-[var(--border)] pb-3 sm:pb-4">
+              <h2 className="text-xl sm:text-2xl font-bold text-[var(--primary)] pr-2">{record.title}</h2>
+              <button onClick={() => setShowModal(false)} className="p-2 hover:bg-[var(--background)] rounded-full transition-colors"><X size={20} className="sm:w-6 sm:h-6" /></button>
             </div>
             
             <div className="grid md:grid-cols-2 gap-6">
