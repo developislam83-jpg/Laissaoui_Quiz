@@ -6,6 +6,7 @@ export function usePeerWebRTC(quizCode: string, peerId: string, name: string, av
   const pcRef = useRef<RTCPeerConnection | null>(null);
   const dcRef = useRef<RTCDataChannel | null>(null);
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+  const iceBuffer = useRef<RTCIceCandidateInit[]>([]);
 
   // Expose a callback for incoming messages
   const onMessageRef = useRef<((data: any) => void) | null>(null);
@@ -50,6 +51,13 @@ export function usePeerWebRTC(quizCode: string, peerId: string, name: string, av
       if (payload.target !== peerId) return;
 
       await pc.setRemoteDescription(new RTCSessionDescription(payload.offer));
+      
+      // Flush buffer
+      while (iceBuffer.current.length > 0) {
+        const candidate = iceBuffer.current.shift();
+        if (candidate) await pc.addIceCandidate(new RTCIceCandidate(candidate)).catch(console.error);
+      }
+
       const answer = await pc.createAnswer();
       await pc.setLocalDescription(answer);
 
@@ -63,7 +71,11 @@ export function usePeerWebRTC(quizCode: string, peerId: string, name: string, av
     channel.on("broadcast", { event: "ice-candidate" }, async ({ payload }) => {
       if (payload.target !== peerId) return;
       if (payload.candidate) {
-        await pc.addIceCandidate(new RTCIceCandidate(payload.candidate));
+        if (pc.remoteDescription) {
+          await pc.addIceCandidate(new RTCIceCandidate(payload.candidate)).catch(console.error);
+        } else {
+          iceBuffer.current.push(payload.candidate);
+        }
       }
     });
 

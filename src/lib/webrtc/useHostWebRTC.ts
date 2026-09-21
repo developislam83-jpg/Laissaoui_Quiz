@@ -16,6 +16,7 @@ export function useHostWebRTC(quizCode: string, onMessageReceived?: (peerId: str
   const [peers, setPeers] = useState<Record<string, ConnectedPeer>>({});
   const connectionsRef = useRef<Record<string, RTCPeerConnection>>({});
   const channelRef = useRef<ReturnType<typeof supabase.channel> | null>(null);
+  const iceBuffersRef = useRef<Record<string, RTCIceCandidateInit[]>>({});
 
   // Keep callback fresh without recreating effect
   const callbackRef = useRef(onMessageReceived);
@@ -35,6 +36,8 @@ export function useHostWebRTC(quizCode: string, onMessageReceived?: (peerId: str
     channel.on("broadcast", { event: "peer-join-request" }, async ({ payload }) => {
       const { peerId, name, avatarUrl } = payload;
       
+      iceBuffersRef.current[peerId] = [];
+
       // Initialize PeerConnection
       const pc = new RTCPeerConnection({
         iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
@@ -91,6 +94,11 @@ export function useHostWebRTC(quizCode: string, onMessageReceived?: (peerId: str
       const pc = connectionsRef.current[payload.from];
       if (pc) {
         await pc.setRemoteDescription(new RTCSessionDescription(answer));
+        const buffer = iceBuffersRef.current[payload.from] || [];
+        while (buffer.length > 0) {
+          const candidate = buffer.shift();
+          if (candidate) await pc.addIceCandidate(new RTCIceCandidate(candidate)).catch(console.error);
+        }
       }
     });
 
@@ -98,7 +106,12 @@ export function useHostWebRTC(quizCode: string, onMessageReceived?: (peerId: str
       if (payload.target !== "host") return;
       const pc = connectionsRef.current[payload.from];
       if (pc && payload.candidate) {
-        await pc.addIceCandidate(new RTCIceCandidate(payload.candidate));
+        if (pc.remoteDescription) {
+          await pc.addIceCandidate(new RTCIceCandidate(payload.candidate)).catch(console.error);
+        } else {
+          if (!iceBuffersRef.current[payload.from]) iceBuffersRef.current[payload.from] = [];
+          iceBuffersRef.current[payload.from].push(payload.candidate);
+        }
       }
     });
 
