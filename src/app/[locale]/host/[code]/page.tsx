@@ -30,9 +30,7 @@ export default function HostSessionPage({ params }: { params: Promise<{ code: st
       const q = questions[currentQIndex];
       if (!q) return;
       
-      const isCorrect = q.type === 'mcq' 
-        ? q.options.find((o:any) => o.id === msg.optionId)?.isCorrect 
-        : (msg.optionId === 'true' && q.options[0].isCorrect) || (msg.optionId === 'false' && q.options[1].isCorrect);
+      const isCorrect = q.options?.find((o:any) => String(o.id) === String(msg.optionId))?.isCorrect || false;
         
       setLeaderboard(prev => {
         const current = prev[peerId] || { points: 0, correct: 0, incorrect: 0 };
