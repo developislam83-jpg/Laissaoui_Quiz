@@ -14,9 +14,15 @@ const HistoryCard = ({ record, onDelete }: { record: any, onDelete: (id: string)
   const [showModal, setShowModal] = useState(false);
   const [details, setDetails] = useState<any>(null);
   
-  const allStandings = Object.entries(record.standings || {}).sort(([,a]:any, [,b]:any) => b - a);
+  const allStandings = Object.entries(record.standings || {}).sort(([,a]:any, [,b]:any) => {
+    const scoreA = typeof a === 'object' ? (a.points || 0) : Number(a);
+    const scoreB = typeof b === 'object' ? (b.points || 0) : Number(b);
+    return scoreB - scoreA;
+  });
   const displayStandings = allStandings.slice(0, 3);
   
+  const getScoreVal = (score: any) => typeof score === 'object' ? score.points : score;
+
   const loadFullDetails = async () => {
     if (!record.quizId) {
       alert("معرف المسابقة مفقود في هذا السجل.");
@@ -61,11 +67,11 @@ const HistoryCard = ({ record, onDelete }: { record: any, onDelete: (id: string)
         <p className="text-xs text-[var(--secondary)] mb-4">{new Date(record.date).toLocaleDateString()} {new Date(record.date).toLocaleTimeString()}</p>
         
         <div className="mb-4 flex-1">
-          <h4 className="text-sm font-bold mb-2">أعلى المراكز:</h4>
+          <h4 className="text-sm font-bold mb-2">أهم المتسابقين:</h4>
           {displayStandings.map(([peer, score]: any, idx) => (
               <div key={peer} className="flex justify-between items-center text-sm bg-[var(--background)] p-1 px-2 rounded mb-1 border border-[var(--border)]">
                 <span className="truncate max-w-[120px]"><span className="text-[var(--secondary)] text-xs ml-1">{idx + 1}.</span> {peer.split('-')[0]}</span>
-                <span className="font-bold text-[var(--primary)]">{score}</span>
+                <span className="font-bold text-[var(--primary)]">{getScoreVal(score)}</span>
               </div>
           ))}
           {allStandings.length === 0 && (
@@ -97,7 +103,7 @@ const HistoryCard = ({ record, onDelete }: { record: any, onDelete: (id: string)
                   {allStandings.map(([peer, score]: any, idx) => (
                     <div key={peer} className="flex justify-between items-center bg-[var(--surface)] p-2 rounded border border-[var(--border)]">
                       <span className="font-bold"><span className="text-[var(--secondary)] mr-2">{idx + 1}.</span> {peer.split('-')[0]}</span>
-                      <span className="text-[var(--primary)] font-bold">{score} نقطة</span>
+                      <span className="text-[var(--primary)] font-bold">{getScoreVal(score)} نقطة</span>
                     </div>
                   ))}
                   {allStandings.length === 0 && <p className="text-[var(--secondary)] text-sm">لا يوجد متسابقين</p>}
